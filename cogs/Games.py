@@ -151,6 +151,7 @@ class Games(commands.Cog):
 
     @commands.command()
     async def memes(self, ctx):
+        
         memes = [
             "https://tenor.com/view/smiling-cat-creepy-cat-cat-zoom-kitty-gif-12199043", 
             "https://i.pinimg.com/originals/e3/2c/e7/e32ce76b21b7953e0badb1eceffff524.jpg", 
@@ -160,6 +161,15 @@ class Games(commands.Cog):
             ]
 
         await ctx.send(random.choice(memes))
+
+    @commands.command()
+    async def pog(self, ctx, pog):
+        
+        t = await ctx.send("reacting...")
+        if pog == "troll":
+            await t.add_reaction("<:trollololol:842127808162955274>")
+        if pog == "pog":
+            await t.add_reaction("<:pog:730280874204987442>")
 
 def setup(bot):
     bot.add_cog(Games(bot))

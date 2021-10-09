@@ -19,8 +19,6 @@ async def on_ready():
     print("---------")
     await bot.change_presence(status="online")
     load_extensions()
-    global online
-    online = True
 
 #Removes the help command
 @bot.remove_command("help")
