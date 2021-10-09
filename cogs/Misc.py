@@ -48,6 +48,56 @@ class Commands(commands.Cog):
             await ctx.send("You reacted in time!")
 
     @commands.command()
+    async def maths(self, ctx, firstnumber: float, operator: str, secondnumber: float, rond = "pdWMycpOtPBottZRtJFu", dp = "HTmvVPwywbOsgmLZmrbx"):
+        if operator == "+":
+            result = firstnumber + secondnumber
+            round_bool = False
+
+        elif operator == "-":
+            result = firstnumber - secondnumber
+            round_bool = False
+
+        elif operator == "/":
+            result = firstnumber / secondnumber
+            round_bool = False
+
+            if rond != "pdWMycpOtPBottZRtJFu" and dp == "HTmvVPwywbOsgmLZmrbx":
+                round_result = round(result, 1)
+                round_bool = True
+
+            elif rond != "pdWMycpOtPBottZRtJFu" and dp != "HTmvVPwywbOsgmLZmrbx":
+                round_result = round(result, int(dp))
+                round_bool = True
+
+        elif operator == "*":
+            result = firstnumber * secondnumber
+            round_bool = False
+
+            if rond != "pdWMycpOtPBottZRtJFu" and dp == "HTmvVPwywbOsgmLZmrbx":
+                round_result = round(result, 1)
+                round_bool = True
+
+            elif rond != "pdWMycpOtPBottZRtJFu" and dp != "HTmvVPwywbOsgmLZmrbx":
+                round_result = round(result, int(dp))
+                round_bool = True
+
+        elif operator == "^":
+            result = firstnumber ** secondnumber
+            round_bool = False
+
+        elif operator == "%":
+            result = firstnumber % secondnumber
+            round_bool = False
+
+        else:
+            result = "That is not an accpted arithmatic operator"
+
+        if round_bool == True:
+            await ctx.send(round_result)
+        else:
+            await ctx.send(result)
+
+    @commands.command()
     async def name(self, ctx, name: str):
         await ctx.send(f"Hi! `{name}`\nMy name is \nWhat? \nMy name is \nWho? \nMy name is \nChika-chika \nSlim Shady")
 

@@ -149,5 +149,17 @@ class Games(commands.Cog):
         embedvariable.set_image(url=img)
         await place.edit(embed=embedvariable)
 
+    @commands.command()
+    async def memes(self, ctx):
+        memes = [
+            "https://tenor.com/view/smiling-cat-creepy-cat-cat-zoom-kitty-gif-12199043", 
+            "https://i.pinimg.com/originals/e3/2c/e7/e32ce76b21b7953e0badb1eceffff524.jpg", 
+            "https://media-assets-03.thedrum.com/cache/images/thedrum-prod/s3-news-tmp-349138-meme7--default--1050.png", 
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_HyGoBdwM_CYB2F20uM4sEPI0AH-st6eAEA&usqp=CAU", 
+            "https://tenor.com/view/relatable-cat-funny-animals-wifi-gif-14384030"
+            ]
+
+        await ctx.send(random.choice(memes))
+
 def setup(bot):
     bot.add_cog(Games(bot))
