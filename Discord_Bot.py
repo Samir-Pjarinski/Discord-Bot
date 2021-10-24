@@ -23,11 +23,18 @@ async def on_ready():
 #Removes the help command
 @bot.remove_command("help")
 
-@bot.event
-async def on_command_error(ctx, error):
+# @bot.event
+# async def on_command_error(ctx, error):
     
-    if isinstance(error, commands.CommandNotFound):
-        await ctx.send("That command does not exist")
+#     if isinstance(error, commands.CommandNotFound):
+#         await ctx.send("That command does not exist")
+
+#     if isinstance(error, commands.ExtensionNotLoaded):
+#         await ctx.send("Failed to load a cog")
+
+#     if isinstance(error, commands.CommandInvokeError):
+#         await ctx.send("You have to use .sa loadacc first")
+
 
 @bot.command()
 async def load(ctx, extension):

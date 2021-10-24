@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord.reaction import Reaction
 from discord import User
-import random
+import random, asyncio
 
 class Games(commands.Cog):
     
@@ -163,13 +163,32 @@ class Games(commands.Cog):
         await ctx.send(random.choice(memes))
 
     @commands.command()
-    async def pog(self, ctx, pog):
+    async def mcq(self, ctx):
         
-        t = await ctx.send("reacting...")
-        if pog == "troll":
-            await t.add_reaction("<:trollololol:842127808162955274>")
-        if pog == "pog":
-            await t.add_reaction("<:pog:730280874204987442>")
+        def checkvalid(reaction : Reaction, user : User):
+            return user.id == ctx.author.id and reaction.message.channel.id == ctx.message.id
+
+        question = ["Who is the best character in Harry Potter? \n Hermione 💚 \n Ginny ♥️ \n Harry 💙 \n Ron 🧡",
+                    "Who is the best sibling? \n Anya 💚 \n Meera  ♥️ \n Samir 💙 \n No one they all suck 🧡" ]
+        correctAnswers = ["♥️", "💙"]
+
+        questionNumber = random.randint(0, len(question) - 1)
+
+        msg = await ctx.send(question[questionNumber])
+        await msg.add_reaction("💚")
+        await msg.add_reaction("♥️")
+        await msg.add_reaction("💙")
+        await msg.add_reaction("🧡")
+        
+        try:
+            reaction, user = await self.bot.wait_for(event = "reaction_add", timeout = 60.0, check = checkvalid)
+        except asyncio.TimeoutError:
+            await ctx.send("you need to be quicker")
+        else:
+            if str(reaction.emoji) == correctAnswers[questionNumber]:
+                await ctx.send("Correct")
+            else:
+                await ctx.send("Wrong")
 
 def setup(bot):
     bot.add_cog(Games(bot))

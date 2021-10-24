@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord.reaction import Reaction
 from discord import User
+import random
 import asyncio
 
 class Commands(commands.Cog):
@@ -112,5 +113,14 @@ class Commands(commands.Cog):
     async def rh(self, ctx):
         await ctx.send("raised")
 
+    @commands.command()
+    async def pog(self, ctx, pog):
+        
+        t = await ctx.send("reacting...")
+        if pog == "troll":
+            await t.add_reaction("<:trollololol:842127808162955274>")
+        if pog == "pog":
+            await t.add_reaction("<:pog:730280874204987442>")
+            
 def setup(bot):
     bot.add_cog(Commands(bot))

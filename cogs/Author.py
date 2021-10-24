@@ -21,6 +21,7 @@ class Author(commands.Cog):
 
     @commands.command()
     async def location(self, ctx):
+        
         channel = ctx.message.channel
         server = ctx.message.guild
         await ctx.send("Wow this is the " + str(channel) + " chanel in the " + str(server) + " server")
